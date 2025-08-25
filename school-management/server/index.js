@@ -20,6 +20,7 @@ app.use('/api/student', require('./routes/student'));
 app.use('/api/teacher', require('./routes/teacher'));
 app.use('/api/parent', require('./routes/parent'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/assignments', require('./routes/assignments'));
 
 app.listen(port, () => {
   console.log('Server listening at http://localhost:' + port);

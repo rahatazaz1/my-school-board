@@ -8,7 +8,9 @@ const Parent = require('../models/Parent');
 // @access  Private
 router.get('/dashboard', auth, async (req, res) => {
   try {
-    const parent = await Parent.findById(req.user.id).select('-password');
+    const parent = await Parent.findById(req.user.id)
+      .select('-password')
+      .populate('student');
     res.json(parent);
   } catch (err) {
     console.error(err.message);
