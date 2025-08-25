@@ -38,10 +38,10 @@ export const AuthProvider = ({ children }) => {
     return response;
   };
 
-  return (
-    <AuthContext.Provider value={{ user, login, logout, register }}>
-      {children}
-    </AuthContext.Provider>
+  return React.createElement(
+    AuthContext.Provider,
+    { value: { user, login, logout, register } },
+    children
   );
 };
 
