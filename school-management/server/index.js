@@ -20,6 +20,8 @@ app.use('/api/student', require('./routes/student'));
 app.use('/api/teacher', require('./routes/teacher'));
 app.use('/api/parent', require('./routes/parent'));
 app.use('/api/admin', require('./routes/admin'));
+app.use('/api/admin/students', require('./routes/admin/students'));
+app.use('/api/admin/settings', require('./routes/admin/settings'));
 app.use('/api/assignments', require('./routes/assignments'));
 app.use('/api/attendance', require('./routes/attendance'));
 app.use('/api/users', require('./routes/users'));
