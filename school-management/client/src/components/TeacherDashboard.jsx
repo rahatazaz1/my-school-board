@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import teacherService from '../services/teacherService';
 import assignmentService from '../services/assignmentService';
 import CreateAssignmentForm from './CreateAssignmentForm';
+import AttendanceForm from './AttendanceForm';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ const TeacherDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showAttendanceForm, setShowAttendanceForm] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +60,12 @@ const TeacherDashboard = () => {
           </li>
         ))}
       </ul>
+
+      <h3>Attendance</h3>
+      <button onClick={() => setShowAttendanceForm(!showAttendanceForm)}>
+        {showAttendanceForm ? 'Cancel' : 'Take Attendance'}
+      </button>
+      {showAttendanceForm && <AttendanceForm />}
     </div>
   );
 };

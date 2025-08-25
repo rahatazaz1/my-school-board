@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
-import studentService from '../services/studentService';
-import assignmentService from '../services/assignmentService';
-import AuthContext from '../context/AuthContext';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from "react";
+import studentService from "../services/studentService";
+import assignmentService from "../services/assignmentService";
+import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const StudentDashboard = () => {
   const { user } = useContext(AuthContext);
@@ -14,10 +14,9 @@ const StudentDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // In a real app, you'd fetch assignments for the student's class
         const [studentRes, assignmentsRes] = await Promise.all([
           studentService.getDashboardData(user.token),
-          assignmentService.getAssignments(user.token), // This should be a filtered list
+          assignmentService.getAssignments(user.token),
         ]);
         setStudentData(studentRes.data);
         setAssignments(assignmentsRes.data);
@@ -30,6 +29,18 @@ const StudentDashboard = () => {
 
     fetchData();
   }, [user]);
+
+  const getAttendanceSummary = () => {
+    if (!studentData || !studentData.attendance || studentData.attendance.length === 0) {
+      return "No attendance records.";
+    }
+
+    const totalDays = studentData.attendance.length;
+    const presentDays = studentData.attendance.filter(att => att.status === "Present").length;
+    const percentage = (presentDays / totalDays) * 100;
+
+    return `${presentDays} / ${totalDays} days present (${percentage.toFixed(2)}%)`;
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -50,6 +61,16 @@ const StudentDashboard = () => {
         {assignments.map((assignment) => (
           <li key={assignment._id}>
             <Link to={`/assignment/${assignment._id}`}>{assignment.title}</Link>
+          </li>
+        ))}
+      </ul>
+
+      <h3>Your Attendance</h3>
+      <p>{getAttendanceSummary()}</p>
+      <ul>
+        {studentData.attendance.map((att) => (
+          <li key={att._id} style={{ color: att.status === "Present" ? "green" : "red" }}>
+            {new Date(att.date).toLocaleDateString()}: {att.status}
           </li>
         ))}
       </ul>

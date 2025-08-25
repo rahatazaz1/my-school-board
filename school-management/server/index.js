@@ -21,6 +21,8 @@ app.use('/api/teacher', require('./routes/teacher'));
 app.use('/api/parent', require('./routes/parent'));
 app.use('/api/admin', require('./routes/admin'));
 app.use('/api/assignments', require('./routes/assignments'));
+app.use('/api/attendance', require('./routes/attendance'));
+app.use('/api/users', require('./routes/users'));
 
 app.listen(port, () => {
   console.log('Server listening at http://localhost:' + port);
