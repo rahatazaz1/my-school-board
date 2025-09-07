@@ -1,12 +1,8 @@
-
-> portfolio@0.0.0 dev
-> vite --host
-
-3:29:33 PM [vite] (client) Re-optimizing dependencies because lockfile has changed
-Port 5173 is in use, trying another one...
-Port 5174 is in use, trying another one...
-
-  VITE v7.1.4  ready in 657 ms
-
-  ➜  Local:   http://localhost:5175/
-  ➜  Network: http://192.168.0.2:5175/
+npm error code ENOENT
+npm error syscall open
+npm error path /app/package.json
+npm error errno -2
+npm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/app/package.json'
+npm error enoent This is related to npm not being able to find a file.
+npm error enoent
+npm error A complete log of this run can be found in: /home/jules/.npm/_logs/2025-09-07T16_14_28_435Z-debug-0.log
