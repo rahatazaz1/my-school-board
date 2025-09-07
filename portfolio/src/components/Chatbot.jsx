@@ -4,11 +4,8 @@ import { createChat } from '@n8n/chat';
 
 const Chatbot = () => {
   useEffect(() => {
-    // The createChat function will mount the chatbot to the target div
     const chat = createChat({
       webhookUrl: 'https://n8n.way2mca.com/webhook/854c829c-2ce6-426f-89e2-ed44d33182f3/chat',
-
-      // Add custom title and messages
       i18n: {
         en: {
           title: 'AI Portfolio Assistant',
@@ -16,25 +13,48 @@ const Chatbot = () => {
           inputPlaceholder: 'Type your question here...',
         },
       },
-
-      // Add some initial messages for a better user experience
       initialMessages: [
         'Hi there! 👋',
         "I'm an AI assistant. You can ask me questions about Mohammad's skills, experience, and projects.",
       ],
     });
+  }, []);
 
-    // The library handles its own cleanup, but if we wanted to be extra safe,
-    // we could add a cleanup function here, though it's not documented in the library.
-    // For now, we will rely on the library's internal management.
+  return (
+    <>
+      <style>
+        {`
+          /*
+            After further research, the @n8n/chat library does not support adding custom icons
+            to the chat toggle button. The button's content is encapsulated.
+            As an alternative, I am styling the button to be a more prominent
+            Floating Action Button (FAB) in the bottom-right corner.
+          */
 
-  }, []); // The empty dependency array ensures this effect runs only once when the component mounts.
+          :root {
+            /* Fix for invisible typing text */
+            --chat--textarea--background: #ffffff;
+            --chat--textarea--color: #101330;
 
-  // This div is the default target for the chatbot to be embedded in.
-  // The component itself doesn't render anything visible in the React tree,
-  // as the library directly manipulates the DOM to add the chat widget.
-  // We return a div with the default target ID to be explicit.
-  return <div id="n8n-chat"></div>;
+            /* Custom branding and button styling */
+            --chat--color-primary: #0d6efd; /* Bootstrap primary blue */
+            --chat--message--user--background: #0d6efd;
+            --chat--toggle--background: var(--chat--color-primary);
+            --chat--toggle--size: 60px;
+          }
+
+          /* Positioning the chat widget container as a FAB */
+          #n8n-chat {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+          }
+        `}
+      </style>
+      <div id="n8n-chat"></div>
+    </>
+  );
 };
 
 export default Chatbot;

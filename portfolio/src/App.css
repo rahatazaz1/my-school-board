@@ -4,6 +4,16 @@
 */
 
 body {
-  /* Add padding to the top of the body to offset the fixed navbar */
-  padding-top: 70px;
+  /* Add more padding to the top of the body to offset the fixed navbar */
+  padding-top: 80px;
+}
+
+/* Custom styles for better spacing */
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.section-heading {
+  margin-bottom: 4rem;
 }
