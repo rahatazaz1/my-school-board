@@ -7,11 +7,7 @@ const About = () => {
         <h2 className="text-center mb-4">About Me</h2>
         <div className="row align-items-center">
           <div className="col-md-4 text-center">
-           <img
-  src="/assets/azaz_1.png"
-  className="img-fluid rounded-circle"
-  alt="Mohammad Azaz smiling, wearing formal attire, seated indoors with a neutral background. The atmosphere is professional and welcoming."
-/>
+            <img src="https://via.placeholder.com/300" className="img-fluid rounded-circle" alt="Mohammad Azaz" />
           </div>
           <div className="col-md-8">
             <p className="lead">
